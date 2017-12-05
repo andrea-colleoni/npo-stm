@@ -8,8 +8,14 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name="Persona.tutte", query="select p from Persona p"),
+	@NamedQuery(name="Persona.perCognome", query="select p from Persona p where p.cognome=:cognome")
+})
 public class Persona {
 	
 	@Id

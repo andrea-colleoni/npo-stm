@@ -46,6 +46,10 @@ public class Citta {
 		condominii.remove(condominio);
 		condominio.setCitta(null);
 	}
+	
+	public String getDescrizioneCitta() {
+		return nome + " (" + provincia + ")";
+	}
 
 	public int getIdCitta() {
 		return idCitta;
