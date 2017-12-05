@@ -15,7 +15,6 @@ public class Citta implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	
 	private int idcitta;
 
 	@Column(name="nome_citta")
