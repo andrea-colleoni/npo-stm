@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data-sources>
+	<data-source id="derby-1604601eb15-33987aa7a54b710a" provider="generic" driver="derby" name="Derby - condominio" save-password="true" show-system-objects="true" read-only="false">
+		<connection server="" database="C:\Users\andre\git\npo-stm\JPAHibernate-03\condominio" url="jdbc:derby:C:\Users\andre\git\npo-stm\JPAHibernate-03\condominio" type="dev"/>
+	</data-source>
+	<filters/>
+</data-sources>
