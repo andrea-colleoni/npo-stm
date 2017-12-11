@@ -26,18 +26,19 @@ public class Persona {
 	private String cognome;
 	
 	@ManyToMany(mappedBy="proprietari", cascade={ CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH }, fetch=FetchType.LAZY)
+	//private List<Abitazione> appartamentiPosseduti; => NO CON MAPPEDSUPERCLASS
 	private List<Appartamento> appartamentiPosseduti;
 	
 	public Persona() {
 		appartamentiPosseduti = new ArrayList<>();
 	}
 	
-	public void addAppartamento(Appartamento appartamento) {
+	public void addAppartamento(Abitazione appartamento) {
 		this.appartamentiPosseduti.add(appartamento);
 		appartamento.getProprietari().add(this);
 	}
 	
-	public void removeAppartamento(Appartamento appartamento) {
+	public void removeAppartamento(Abitazione appartamento) {
 		this.appartamentiPosseduti.remove(appartamento);
 		appartamento.getProprietari().remove(this);
 	}

@@ -4,17 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 
 @Entity
 //@Table(schema="`stm-condominio`")
+//@MappedSuperclass  => non entity
+//@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+//@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy=InheritanceType.JOINED)
+@DiscriminatorColumn(name="TIPO_APPARTAMENTO")
 public class Appartamento {
 	
 	@Id
@@ -41,7 +50,7 @@ public class Appartamento {
 	public void addProprietario(Persona persona) {
 		this.proprietari.add(persona);
 		persona.getAppartamentiPosseduti().add(this);	
-	}	
+	}
 	
 	public void removeProprietario(Persona persona) {
 		this.proprietari.remove(persona);
