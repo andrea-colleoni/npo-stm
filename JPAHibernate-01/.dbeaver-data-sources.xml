@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data-sources>
+	<data-source id="derby-160465232da-48d1c86bcd96f616" provider="generic" driver="derby" name="Derby - popolazione" save-password="true" show-system-objects="true" read-only="false">
+		<connection server="" database="C:\Users\andre\Desktop\Temp\Corsi\NPO - STM\Hibernate\eclipse\EsempioWebToDB\popolazione" url="jdbc:derby:C:\Users\andre\Desktop\Temp\Corsi\NPO - STM\Hibernate\eclipse\EsempioWebToDB\popolazione" type="dev"/>
+	</data-source>
+	<filters/>
+</data-sources>
