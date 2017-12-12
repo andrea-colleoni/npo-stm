@@ -24,11 +24,15 @@
 	$(function() {
 		// carica le persone nella tabella usando AJAX
 		caricaPersone();
+		caricaCitta();
 		$('#btnSalva').click(function() {
 			var p = {
 				nome: $('#txtNome').val(),
 				cognome: $('#txtCognome').val(),
-				indirizzo: $('#txtIndirizzo').val()
+				indirizzo: $('#txtIndirizzo').val(),
+				citta: {
+					idCitta: $('#selCitta').val()
+				}
 			}
 			$.ajax({
 				url: '/nuovaPersona',
@@ -45,6 +49,24 @@
 			})
 		});
 	});
+	
+	function caricaCitta() {
+		$.ajax({
+			url: '/elencoCitta',
+			method: 'get'
+		})
+		.done(function(dati) {
+			console.log(dati);
+			$('#selCitta')
+			    .remove()
+			    .end();
+		    
+			$.each(dati, function(i, c) {
+				$('#selCitta')
+			    	.append('<option value="' + c.idCitta + '">' + c.nome + '</option>');
+			});
+		});
+	}
 	
 	function caricaPersone() {
 		$.ajax({
