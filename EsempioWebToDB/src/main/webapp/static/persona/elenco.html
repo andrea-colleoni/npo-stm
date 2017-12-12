@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Elenco persone</title>
+<link href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+</head>
+<body>
+<table id="tblPersone"></table>
+<div>
+	Nome:<input type="text" id="txtNome"><br/>
+	Cognome:<input type="text" id="txtCognome"><br/>
+	Indirizzo:<input type="text" id="txtIndirizzo"><br/>
+	Città:<select id="selCitta"></select><br/>
+	<button id="btnSalva">Salva</button>
+</div>
+
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script>
+	$(function() {
+		// carica le persone nella tabella usando AJAX
+		caricaPersone();
+		$('#btnSalva').click(function() {
+			var p = {
+				nome: $('#txtNome').val(),
+				cognome: $('#txtCognome').val(),
+				indirizzo: $('#txtIndirizzo').val()
+			}
+			$.ajax({
+				url: '/nuovaPersona',
+				method: 'post',
+				data: JSON.stringify(p),
+				dataType: 'json',
+				contentType: "application/json; charset=utf-8"
+			})
+			.done(function(esito) {
+				if(esito) {
+					$(':input').val('');
+					caricaPersone();
+				};
+			})
+		});
+	});
+	
+	function caricaPersone() {
+		$.ajax({
+			url: '/persone',
+			method: 'get'
+		})
+		.done(function(dati) {
+			console.log(dati);
+			$('#tblPersone').DataTable({
+				data: dati,
+				destroy: true,
+				columns: [
+					{
+						title: 'Nome',
+						data: 'nome'
+					},
+					{
+						title: 'Cognome',
+						data: 'cognome'
+					},
+					{
+						title: 'Indirizzo',
+						data: 'indirizzo'
+					}
+				]
+			});		
+		});
+		
+	}
+</script>
+</body>
+</html>
